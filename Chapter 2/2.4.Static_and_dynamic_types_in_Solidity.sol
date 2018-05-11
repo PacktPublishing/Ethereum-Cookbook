@@ -1,4 +1,5 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
+
 contract A {
 
     // Boolean type
@@ -9,9 +10,18 @@ contract A {
 
     uint value;
     address public sender;
-
      // address of contract B
     address b = 0xef55bfac4228981e850936aaf042951f7b146e41;
+
+    function getSenderBalance() public view returns (uint)  {
+        // Returns the balance of given address
+        return sender.balance;
+    }
+    
+    function sendEther(address _receiver) public {
+        // Transfers ether to given address
+        _receiver.transfer(1 ether);
+    }
 
     // Function to demonstrate delegateCall
     function makeDelegateCall(uint _value) public {
