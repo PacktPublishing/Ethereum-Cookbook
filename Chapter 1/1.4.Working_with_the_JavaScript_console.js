@@ -19,3 +19,8 @@ personal
 miner
 txpool
 web3.toWei(1, "ether")
+
+
+// To execute JS Code in non-interactive way
+// $ geth --exec "eth.accounts" attach http://localhost:8545
+// $  geth --jspath "/home" --exec 'loadScript("sendTransaction.js")' attach http://localhost:8545
