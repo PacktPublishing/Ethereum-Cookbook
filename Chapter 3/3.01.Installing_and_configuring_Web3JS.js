@@ -2,6 +2,7 @@
 // npm install web3@0.20.6
 // npm view web3 versions
 
+// <script src="./dist/web3.min.js"></script>
 var Web3 = require("web3");
 
 // For v1.x.x

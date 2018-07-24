@@ -1,3 +1,16 @@
+// npm install solc --save
+
+// pragma solidity ^0.4.21;
+// contract HelloWorld {
+//     string textToPrint = "hello world";
+//     function changeText(string _text) public {
+//         textToPrint = _text;
+//     }
+//     function printSomething() public view returns (string) {
+//         return textToPrint;
+//     }
+// }
+
 var contract = "pragma solidity ^0.4.21; contract HelloWorld { string textToPrint = 'hello world'; function changeText(string _text) public { textToPrint = _text; } function printSomething() public view returns (string) { return textToPrint; } }";
 
 var solc = require("solc");

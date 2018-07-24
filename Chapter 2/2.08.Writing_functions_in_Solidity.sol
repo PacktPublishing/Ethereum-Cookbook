@@ -42,3 +42,12 @@ contract Advanced {
         return basic.addOne(_b) + 1;
     }
 }
+
+contract Test {
+    function fun(uint _a) public {
+        // Do something
+    }
+    function fun(uint _b, uint _c) public {
+        // Do something
+    }
+}

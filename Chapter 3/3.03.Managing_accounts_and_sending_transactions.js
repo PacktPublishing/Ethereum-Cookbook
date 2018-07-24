@@ -1,3 +1,6 @@
+// geth --rpc --rpcapi="db,eth,net,web3,personal"
+// admin.startRPC("<ip_address>", <rpc_port>, "*", "db,eth,net,web3,personal")
+
 // v0.2x.x
 web3.eth.accounts;
 // v1.x.x

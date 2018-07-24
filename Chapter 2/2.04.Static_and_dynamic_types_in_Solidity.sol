@@ -8,7 +8,9 @@ contract A {
     // String type
     string stringVariable = "Hello!";
 
+    // Uint type
     uint value;
+
     address public sender;
      // address of contract B
     address b = 0xef55bfac4228981e850936aaf042951f7b146e41;
@@ -33,6 +35,10 @@ contract A {
 contract B {
     uint value;
     address public sender;
+
+    // Type conversion
+    int u = -1;
+    uint v = uint(v);
     
     function setValue(uint _value) public {
         value = _value;

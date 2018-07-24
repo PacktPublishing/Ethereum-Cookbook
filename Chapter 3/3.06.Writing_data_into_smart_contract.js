@@ -1,3 +1,17 @@
+// pragma solidity ^0.4.21;
+// contract HelloWorld {
+//     // State variable
+//     string textToPrint = "hello world";
+//     // State changing function
+//     function changeText(string _text) public {
+//         textToPrint = _text;
+//     }
+//     // Read-only function
+//     function printSomething() public view returns (string) {
+//         return textToPrint;
+//     }
+// }
+
 // For v0.2x.x
 var helloWorld = web3.eth.contract("<ABI>");
 var helloWorldInstance = helloWorld.at("<Address>");

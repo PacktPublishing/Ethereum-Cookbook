@@ -1,4 +1,58 @@
+// pragma solidity ^0.4.22;
+// contract eventEmitter {
+//     event simpleEvent(address _sender);
+//     event indexedEvent(address indexed _sender, uint _id);
+//     function simpleEmit() public {
+//         // do something
+//         emit simpleEvent(msg.sender);
+//     }
+//     function indexedEmit(uint _id) public {
+//         // do something
+//         emit indexedEvent(msg.sender, _id);
+//     }
+// }
+
+
 // *** FILTER EVENTS ***
+
+// For v0.2x.x
+contractInstance.MyEvent([options]).watch([callback]);
+// For v1.x.x
+contractInstance.events.MyEvent([options][, callback])
+
+
+// For web3.js v0.2x.x
+var eventContract = web3.eth.contract(abi);
+var eventContractInstance = eventContract.at(address);
+// Create an event instance
+var simpleEventInstance = myContractInstance.simpleEvent({}, {
+    fromBlock: 0,
+    toBlock: 'latest'
+});
+// Start watching the event
+simpleEventInstance.watch(function (error, result) {
+    console.log(result);
+});
+
+// Stops watching the event
+simpleEventInstance.stopWatching();
+
+// For web3.js v1.x.x
+eventContractInstance.events.simpleEvent({
+    filter: {},
+    fromBlock: 0
+}, function (error, event) {
+    console.log(event);
+})
+// For web3.js v1.x.x
+eventContractInstance.events.simpleEvent({
+    filter: {},
+    fromBlock: 0
+}).on('data', function (event) {
+    console.log(event);
+}).on('changed', function (event) {
+    console.log(event);
+}).on('error', console.error);
 
 // For web3.js 0.2x.x
 var indexedEventInstance = eventContractInstance.indexedEvent(
