@@ -49,3 +49,23 @@ web3.eth.sign("Hello world",
 ).then(function (result) {
     console.log(result);
 });
+
+
+// Recover transaction
+web3.eth.accounts.recoverTransaction(rawTransaction);
+
+var result = web3.eth.accounts.recoverTransaction("0x0...");
+console.log(result);
+
+web3.eth.accounts.recover(signatureObject);
+web3.eth.accounts.recover(message, signature[, preFixed]);
+web3.eth.accounts.recover(message, v, r, s[, preFixed]);
+
+web3.eth.accounts.recover({
+    messageHash: '0x0..',
+    v: '0x0..',
+    r: '0x0..',
+    s: '0x0..'
+})
+web3.eth.accounts.recover('0x0..', '0x0..');
+web3.eth.accounts.recover('0x0x..', '0x0x..', '0x0..', '0x0..');
