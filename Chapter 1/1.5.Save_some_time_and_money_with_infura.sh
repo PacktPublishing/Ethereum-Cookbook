@@ -1,2 +1,0 @@
-# Get Block number usign JSON-RPC and infura
-curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc": "2.0", "id": 1, "method": "eth_blockNumber", "params": []}' "https://mainnet.infura.io/<your-api-key>"
