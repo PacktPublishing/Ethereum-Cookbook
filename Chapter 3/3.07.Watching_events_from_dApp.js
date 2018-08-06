@@ -96,6 +96,9 @@ var eventResults = simpleEventInstance
         console.log(logs);
     });
 
+// For web3.js 1.x.x - Syntax
+// contractInstance.getPastEvents(event[, options][, callback])
+
 // For web3.js 1.x.x - Example
 eventContractInstance.getPastEvents('simpleEvent', {
     filter: {},

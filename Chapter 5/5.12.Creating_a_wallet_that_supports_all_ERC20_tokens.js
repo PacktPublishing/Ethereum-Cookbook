@@ -1,3 +1,8 @@
+var abi = [...]; // Contract interface
+var address = "0x0..."; // Deployed ERC20 contract address
+
+var tokenContract = new web3.eth.Contract(abi, address);
+
 var userAddress = "0x0..."; // Address of the user
 tokenContract.methods.getBalance(userAddress)
     .call().then(function (result) {

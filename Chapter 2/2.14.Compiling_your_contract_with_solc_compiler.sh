@@ -20,3 +20,11 @@ solc -o <path_to_output_directory> --bin --abi HelloWorld.soltory> --bin --abi H
 solc github.com/OpenZeppelin/zeppelin-solidity=/usr/local/zeppelin =/usr/local/others contract.sol
 
 solc --optimize --bin HelloWorld.sol
+
+
+# --ast       AST of all source files.
+# --asm       EVM assembly of the contracts.
+# --opcodes   Opcodes of the contracts.
+# --hashes    Function signature hashes of the contracts.
+# --userdoc   Natspec user documentation of all contracts.
+# --formal    Translated source suitable for formal analysis.

@@ -1,3 +1,36 @@
+contract('TokenContract', function() {
+    // Write tests
+});
+
+var TokenContract = artifacts.require("TokenContract.sol");
+
+var TokenContract = artifacts.require("TokenContract.sol"); 
+
+contract('TokenContract', function(accounts) { 
+    it("Contract test template", function() { 
+        return TokenContract.deployed().then(function(instance) { 
+            console.log(instance);
+        });
+    });
+});
+
+var TokenContract = artifacts.require("TokenContract.sol");
+
+contract('TokenContract', function(accounts) {
+
+    it("should allocate 10000 Token to the owner account", function() {
+        return TokenContract.deployed().then(function(instance) {
+            return instance.getBalance.call(accounts[0]);
+        }).then(function(balance) {
+            assert.equal(balance.valueOf(), 100000, 
+                "100000 wasn't in the first account");
+        });
+    });
+
+})
+
+
+
 var TokenContract = artifacts.require("TokenContract.sol");
 
 contract('TokenContract', function (accounts) {

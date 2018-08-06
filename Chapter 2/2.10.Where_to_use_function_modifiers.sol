@@ -1,69 +1,81 @@
-pragma solidity ^0.4.23;
+modifier modifierName {
+    // modifier definition
+}
+
+modifier onlyOwner {
+    require(msg.sender == owner);
+    _;
+}
 
 contract Test {
+    
     address owner;
+    
     constructor() public {
         owner = msg.sender;
     }
+    
     modifier onlyBy(address user) {
         require(msg.sender == user);
-        _; 
+        _;
     }
-    function donate() onlyBy(owner) public view {
+    
+    function donate() onlyBy(owner) public {
         // do something
-    } 
+    }
 }
 
-
-
-contract A {
+contract modifierContract {
     address owner;
-    constructor() public {
+    constructor() {
         owner == msg.sender;
     }
+
     modifier onlyOwner {
         require(msg.sender == owner);
         _;
     }
-    modifier minContribution {
-        require(msg.value > 1 ether);
+
+    modifier valueGreaterThan(uint value) {
+        require(msg.value > value);
         _;
     }
-    function donate() onlyOwner minContribution public {
+
+    function sendEther() onlyOwner valueGreaterThan(1 ether) public {
         // Function body
-    } 
+    }
 }
 
 contract Ownership {
 
     address owner;
     
-    constructor() public {
+    function Ownership() public {
         owner = msg.sender;
     }
-    
-    modifier onlyOwner { 
+
+    modifier onlyOwner {
         require(msg.sender == owner);
-        _; 
+        _;
     }
 }
 
 contract Donate is Ownership {
-    
+
     bool locked;
-    
     modifier noReentrancy() {
         require(!locked);
         locked = true;
         _;
         locked = false;
     }
-    
+
     function claim() onlyOwner public {
         require(msg.sender.call());
     }
-    
+
     function donate(address _user) noReentrancy public {
         require(_user.call());
-    } 
+    }
+
 }

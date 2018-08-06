@@ -33,3 +33,5 @@ contract Migrations {
 // module.exports = function(deployer) {
 //     deployer.deploy(Migrations);
 // };
+
+// truffle migrate

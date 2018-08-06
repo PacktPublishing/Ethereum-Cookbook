@@ -1,6 +1,16 @@
 // truffle install <package_name>@<version>
 // truffle install
 
+// pragma solidity ^0.4.23; 
+
+// import "owned/ownable.sol"; 
+
+// contract MyContract is ownable { 
+//     ...
+// }
+
+
+
 var MyPackage = artifacts.require("package/contract");
 var MyContract = artifacts.require("MyContract");
 module.exports = function (deployer) {

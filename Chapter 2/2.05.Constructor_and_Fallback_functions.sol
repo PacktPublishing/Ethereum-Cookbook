@@ -1,21 +1,67 @@
-pragma solidity^0.4.23;
-
-contract Base {
-    
-    uint minValue;
-    
-    constructor(uint _minValue) public {
-        minValue = _minValue;
-    }
-    
-    event EtherReceived(address indexed from);
-    
-    function() public payable {
-        require(msg.value > minValue);
-        emit EtherReceived(msg.sender);
+contract A {
+    constructor() {
+        // Constructor
     }
 }
 
-contract Sample is Base {
-    constructor(uint _minValue) Base(_minValue) public { }
+contract A {
+    address owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+}
+
+contract C {
+    uint n;
+
+    constructor(uint _n) internal {
+        n = _n;
+    }
+}
+
+contract X {
+    // Default constructor
+    constructor() public { }
+}
+
+contract A {
+    uint someValue;
+    constructor(uint _value) public {
+        someValue = _value;
+    }
+}
+
+contract B is A(10) {
+     // Base contract argument during inheritance
+}
+
+contract C is A {
+    constructor(uint _anotherValue) First(_anotherValue) public {
+        // Base contract argument in constructor
+    }
+}
+
+function() {
+    // fallback function
+}
+
+function() payable {
+    // fallback function which can receive Ether
+}
+
+function() payable {
+    // takes only 2300 gas.
+    emit EtherReceived(msg.sender);
+}
+
+contract Receiver {
+    uint count;
+    
+    event EtherReceived(address indexed from);
+
+    function() payable {
+        count++;
+        emit EtherReceived(msg.sender);
+    }
 }

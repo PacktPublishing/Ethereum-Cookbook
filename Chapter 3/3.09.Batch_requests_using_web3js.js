@@ -16,6 +16,11 @@ batch.add(contract);
 
 batch.execute();
 
+// new web3.BatchRequest()
+// new web3.eth.BatchRequest()
+// new web3.shh.BatchRequest()
+// new web3.bzz.BatchRequest()
+
 // Web3js v1.x.x
 var balance = web3.eth.getBalance.request(
     web3.eth.accounts[1],

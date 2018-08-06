@@ -46,6 +46,10 @@ helloWorldInstance.methods.changeText("Greetings!").send({
     //..
 }).on('error', console.error);
 
+// Method syntax
+// myContractInstance.methods
+//     .myMethod([param1[, param2[, ...]]])
+//     .estimateGas(options [, callback])
 
 // Estimate gas
 helloWorldInstance.methods.changeText("Greetings!").estimateGas({

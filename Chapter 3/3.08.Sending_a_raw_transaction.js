@@ -1,3 +1,5 @@
+// $ npm install ethereumjs-tx --save
+
 // For web3.js 0.2x.x
 var Tx = require("ethereumjs-tx");
 var rawTx = {
@@ -34,6 +36,11 @@ web3.eth.accounts.signTransaction({
     console.log(result);
 });
 
+web3.eth.sendSignedTransaction("<rawTransaction>")
+    .on('receipt', function(receipt) {
+        console.log(receipt);
+    });
+
 
 // SIGN TRANSACTION
 // For web3.js 0.2x.x
@@ -49,6 +56,8 @@ web3.eth.sign("Hello world",
 ).then(function (result) {
     console.log(result);
 });
+
+web3.eth.accounts.sign("Hello World", "<privateKey>");
 
 
 // Recover transaction

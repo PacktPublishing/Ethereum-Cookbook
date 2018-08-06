@@ -1,3 +1,42 @@
+// npm install truffle-contract
+// <script type="text/javascript" src="web3.js"></script> 
+// <script type="text/javascript" src="./dist/truffle-contract.min.js"></script>
+
+var provider = new Web3.providers.HttpProvider("http://localhost:8545"); 
+var contract = require("truffle-contract");
+
+var MyContract = contract({
+    // Optional. Defaults to "Contract"
+    contract_name: "MyContract",
+    // Required. Application binary interface.
+    abi: [], 
+    // Optional. Binary without resolve library links. 
+    unlinked_binary: "...", 
+    // Optional. Deployed address of contract.
+    address: "...", 
+    // Optional. ID of network being saved within abstraction. 
+    network_id: "...", 
+    // Optional. ID of default network this
+    default_network: "..."
+});
+
+var MyContract = TruffleContract({
+    //...
+});
+
+var contractInstance; 
+
+MyContract.deployed().then(function(instance) { 
+    var contractInstance = instance; 
+    return contractInstance.contractFunction(); 
+}).then(function(result) { 
+    // Do something
+});
+
+
+
+MyContract.setProvider(provider);
+
 var provider = new Web3.providers.HttpProvider("http://localhost:8545");
 var contract = require("truffle-contract");
 var TokenContract = contract({
@@ -32,3 +71,25 @@ TokenContract.at(contract_address).then(function (instance) {
 }).catch(function (err) {
     console.log(err);
 });
+
+// npm install truffle-artifactor
+
+var artifactor = require("truffle-artifactor");
+
+var contract_data = { 
+    contract_name: "TokenContract", 
+    abi: [], 
+    unlinked_binary: "...", 
+    address: "...", 
+    network_id: "...", 
+    default_network: "..."
+};
+
+artifactor.save(contract_data, "./TokenContract.sol.js") 
+    .then(function () { 
+        // Success 
+    });
+
+var TokenContract = require("./TokenContract.sol.js");
+
+TokenContract.setProvider(provider);

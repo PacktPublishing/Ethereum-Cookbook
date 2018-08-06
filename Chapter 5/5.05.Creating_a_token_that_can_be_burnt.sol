@@ -1,4 +1,31 @@
 pragma solidity ^0.4.23;
+
+import "./ERC20.sol";
+
+contract Burnable is ERC20 {
+    ...
+}
+
+
+function burn(uint256 _value) public { }
+
+require(_value <= balances[msg.sender]);
+
+
+balances[_who] = balances[_who].sub(_value); 
+totalSupply_ = totalSupply_.sub(_value);
+
+
+// Event declaration
+event Burn(address indexed burner, uint256 value);
+
+// Emit the event during burning process
+emit Burn(msg.sender, _value);
+
+emit Transfer(msg.sender, address(0), _value);
+
+
+pragma solidity ^0.4.23;
 import "./ERC20.sol";
 
 contract BurnableToken is BasicToken {

@@ -24,3 +24,7 @@ truffle compile --all
 #     "schemaVersion": "",
 #     "updatedAt": ""
 # }
+
+import "<path_to_the_contract.sol>";
+
+import "packageName/contract.sol";

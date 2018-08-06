@@ -7,6 +7,10 @@
 //     }
 // }
 
+// $ solc --optimize --bin --abi HelloWorld.sol
+// $ geth console 2>> ./geth.log
+
+
 // Unlock Account
 web3.personal.unlockAccount(web3.eth.accounts[0], '<password>');
 

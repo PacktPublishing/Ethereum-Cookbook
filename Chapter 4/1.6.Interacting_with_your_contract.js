@@ -1,3 +1,8 @@
+TokenContract.deployed().then(function(instance) { 
+    console.log(instance); 
+});
+
+
 var TokenContract = artifacts.require("TokenContract.sol");
 
 var from_address = "0xa...";

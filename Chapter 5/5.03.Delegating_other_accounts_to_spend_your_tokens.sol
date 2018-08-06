@@ -1,3 +1,35 @@
+mapping (address => mapping (address => uint256)) internal allowed;
+
+function approve(address _spender, uint256 _value) public
+    returns (bool) { }
+
+allowed[msg.sender][_spender] = _value;
+
+// Event declaraion
+event Approval();
+
+// Raise the event
+emit Approval(msg.sender, _spender, _value);
+
+function allowance(address _owner, address _spender) public view 
+    returns (uint256) { 
+    return allowed[_owner][_spender]; 
+}
+
+require(_to != address(0)); 
+require(_value <= balances[_from]); 
+require(_value <= allowed[_from][msg.sender]);
+
+allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+
+balances[_from] = balances[_from].sub(_value); 
+balances[_to] = balances[_to].add(_value);
+
+emit Transfer(_from, _to, _value); 
+return true;
+
+
+
 pragma solidity ^0.4.23;
 import "./math/SafeMath.sol"
 

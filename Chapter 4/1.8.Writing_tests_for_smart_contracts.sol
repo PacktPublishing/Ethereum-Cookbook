@@ -1,3 +1,14 @@
+// contract TestContract {
+//     ...
+// }
+
+// contract TestContract {
+//     testCase1() { ... }
+//     testCase2() { ... }
+// }
+
+
+
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/TokenContract.sol";
