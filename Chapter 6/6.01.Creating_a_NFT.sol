@@ -1,3 +1,161 @@
+function balanceOf(address _owner) external view returns (uint256);
+
+mapping (address => uint256) internal ownedTokensCount;
+
+function balanceOf(address _owner) public view returns (uint256) {
+    require(_owner != address(0));
+    return ownedTokensCount[_owner];
+}
+
+function ownerOf(uint256 _tokenId) external view returns (address);
+
+mapping (uint256 => address) internal tokenOwner;
+
+function ownerOf(uint256 _tokenId) public view returns (address) {
+    address owner = tokenOwner[_tokenId];
+    require(owner != address(0));
+    return owner;
+}
+
+function exists(uint256 _tokenId) public view returns (bool) {
+    address owner = tokenOwner[_tokenId];
+    return owner != address(0);
+}
+
+modifier onlyOwnerOf(uint256 _tokenId) {
+    require(ownerOf(_tokenId) == msg.sender);
+    _;
+}
+
+pragma solidity ^0.4.23;
+
+import "./SafeMath.sol";
+
+contract BasicERC721 {
+    using SafeMath for uint256;
+
+    // Mapping from token ID to owner
+    mapping (uint256 => address) internal tokenOwner;
+
+    // Mapping from owner to number of owned token
+    mapping (address => uint256) internal ownedTokensCount;
+
+    /**
+     * @dev Guarantees msg.sender is owner of the given token
+     * @param _tokenId uint256 ID of the token
+     */
+    modifier onlyOwnerOf(uint256 _tokenId) {
+        require(ownerOf(_tokenId) == msg.sender);
+        _;
+    }
+
+    /**
+     * @dev Gets the balance of the specified address
+     * @param _owner address to query the balance of
+     * @return uint256 represents the amount owned
+     */
+    function balanceOf(address _owner) public view 
+        returns (uint256) {
+        require(_owner != address(0));
+        return ownedTokensCount[_owner];
+    }
+
+    /**
+     * @dev Gets the owner of the specified token ID
+     * @param _tokenId uint256 ID of the token to query the owner
+     * @return owner address currently marked as the owner
+     */
+    function ownerOf(uint256 _tokenId) public view 
+        returns (address) {
+        address owner = tokenOwner[_tokenId];
+        require(owner != address(0));
+        return owner;
+    }
+
+    /**
+     * @dev Returns whether the specified token exists
+     * @param _tokenId uint256 ID of the token to query
+     * @return whether the token exists
+     */
+    function exists(uint256 _tokenId) public view returns (bool) {
+        address owner = tokenOwner[_tokenId];
+        return owner != address(0);
+    }
+
+  /**
+   * @dev Function to add a token ID
+   * @param _to address of the new owner
+   * @param _tokenId uint256 ID of the token to be added
+   */
+    function addTokenTo(address _to, uint256 _tokenId) internal {
+        require(tokenOwner[_tokenId] == address(0));
+        tokenOwner[_tokenId] = _to;
+        ownedTokensCount[_to] = ownedTokensCount[_to].add(1);
+    }
+
+  /**
+   * @dev Function to remove a token ID
+   * @param _from address of the previous owner
+   * @param _tokenId uint256 ID of the token to be removed
+   */
+    function removeTokenFrom(address _from, uint256 _tokenId) internal {
+        require(ownerOf(_tokenId) == _from);
+        ownedTokensCount[_from] = ownedTokensCount[_from].sub(1);
+        tokenOwner[_tokenId] = address(0);
+    }
+}
+
+
+string internal name_;
+string internal symbol_;
+
+constructor(string _name, string _symbol) public {
+    name_ = _name;
+    symbol_ = _symbol;
+}
+
+function name() public view returns (string) {
+    return name_;
+}
+
+function symbol() public view returns (string) {
+    return symbol_;
+}
+
+mapping(address => uint256[]) internal ownedTokens;
+
+mapping(uint256 => uint256) internal ownedTokensIndex;
+
+function addTokenTo(address _to, uint256 _tokenId) internal {
+    // call the previous addToken method here
+    uint256 length = ownedTokens[_to].length;
+    ownedTokens[_to].push(_tokenId);
+    ownedTokensIndex[_tokenId] = length;
+}
+
+function removeTokenFrom(address _from, uint256 _tokenId) internal {
+    // call the previous removeToken method here
+    uint256 tokenIndex = ownedTokensIndex[_tokenId];
+    uint256 lastTokenIndex = ownedTokens[_from].length.sub(1);
+    uint256 lastToken = ownedTokens[_from][lastTokenIndex];
+
+    ownedTokens[_from][tokenIndex] = lastToken;
+    ownedTokens[_from][lastTokenIndex] = 0;
+
+    ownedTokens[_from].length--;
+    ownedTokensIndex[_tokenId] = 0;
+    ownedTokensIndex[lastToken] = tokenIndex;
+}
+
+uint256[] internal allTokens;
+
+mapping(uint256 => uint256) internal allTokensIndex;
+
+function totalSupply() public view returns (uint256) {
+    return allTokens.length;
+}
+
+
 pragma solidity^0.4.23;
 import "./SafeMath.sol";
 
