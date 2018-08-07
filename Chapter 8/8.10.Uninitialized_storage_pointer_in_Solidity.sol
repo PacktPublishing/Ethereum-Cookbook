@@ -1,3 +1,8 @@
+function fun(uint _a) {
+    uint[] x;
+}
+
+
 pragma solidity ^0.4.24;
 
 // Contract to demonstrate uninitialized storage pointer bug
