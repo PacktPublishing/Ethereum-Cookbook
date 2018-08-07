@@ -1,6 +1,6 @@
 pragma solidity ^0.4.23;
 
-contract IfElseContract {
+contract test {
     function isValid(uint input) public pure returns (bool) {
         if (input > 10) {
             return true;
@@ -10,7 +10,7 @@ contract IfElseContract {
     } 
 }
 
-contract WhileContract {
+contract test {
     function refund(address[] users) public {
         uint i = 0;
         while (i < users.length) {
@@ -20,7 +20,7 @@ contract WhileContract {
     }
 }
 
-contract ForContract {
+contract test {
     function refund(address[] users) public {
         for(uint i = 0; i < users.length; i++) {
             users[i].transfer(1 ether);
@@ -28,7 +28,7 @@ contract ForContract {
     }
 }
 
-contract DoWhileContract {
+contract test {
     function refund(address[] users) public {
         uint input = 0;
         do {
@@ -38,7 +38,7 @@ contract DoWhileContract {
     }
 }
 
-contract ContinueContract {
+contract test{
     function refund(address[] users) public {
         for (uint i = 0; i < 20; i++) {
             if (i % 2 == 0)
@@ -48,7 +48,7 @@ contract ContinueContract {
     }
 }
 
-contract ConditionalContract {
+contract test
     function isValid(uint value) public pure returns (bool) {
         bool result = (value > 10) ? true : false;
         return result;
