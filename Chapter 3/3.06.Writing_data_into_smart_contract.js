@@ -46,10 +46,17 @@ helloWorldInstance.methods.changeText("Greetings!").send({
     //..
 }).on('error', console.error);
 
-// Method syntax
-// myContractInstance.methods
-//     .myMethod([param1[, param2[, ...]]])
-//     .estimateGas(options [, callback])
+// Method syntax - v1.x.x
+myContractInstance.methods
+.stateChangingMethod([param1[, param2[, ...]]])
+.send(options [, callback]);
+
+// Example - v1.x.x
+helloWorldInstance.methods
+.changeText("Greetings!")
+.send({
+from: "0xce5C2D181f6DD99091351f6E6056c333A969AEC9"
+}, function(error, transactionHash){ ... });
 
 // Estimate gas
 helloWorldInstance.methods.changeText("Greetings!").estimateGas({
@@ -61,8 +68,7 @@ helloWorldInstance.methods.changeText("Greetings!").estimateGas({
 // Estimate gas using Promise
 helloWorldInstance.methods.changeText("Greetings!").estimateGas({
     from: "0xce5C2D181f6DD99091351f6E6056c333A969AEC9"
-}).then(function (gasAmount) {
-    //...
-}).catch(function (error) {
-    //...
-});
+}).on('transactionHash', function(hash){
+...}).on('confirmation', function(confirmationNumber, receipt){
+...}).on('receipt', function(receipt){ console.log(receipt);
+}).on('error', console.error);
