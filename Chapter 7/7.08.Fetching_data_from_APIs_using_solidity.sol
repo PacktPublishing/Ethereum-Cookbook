@@ -1,5 +1,25 @@
 pragma solidity ^0.4.24;
 
+contract OracleRng {
+    uint public random;
+    ...
+}
+
+event LogOracle();
+event LogNewRandom(uint random);
+
+function setRandom() public {
+    emit LogOracle();
+}
+
+function _callback(uint _random) public {
+    random = _random;
+    emit LogNewRandom(_random);
+}
+
+
+pragma solidity ^0.4.24;
+
 /**
  * Random number generator contract
  * using oracles
@@ -28,19 +48,32 @@ contract OracleRng {
     }
 }
 
+var oracle = oracleRng.setRandom();
+
+// watch for logs
+oracle.watch(function(error, result){
+    ...
+});
+
+// Use some logic or external API call to generate the number.
+var random = 1232;
+
+oracleRng._callback(random, {
+    from: "0x.."
+});
 
 
-// var oracle = oracleRng.setRandom();
+var oracle = oracleRng.setRandom();
 
-// // watch for logs
-// oracle.watch(function(error, result) {
-//     // Make API calls to generate random number
-//     var random = 1232;
-//     // Callback into source contract
-//     oracleRng._callback(random, {
-//         from: "0x.."
-//     });
-// });
+// watch for logs
+oracle.watch(function(error, result) {
+    // Make API calls to generate random number
+    var random = 1232;
+    // Callback into source contract
+    oracleRng._callback(random, {
+        from: "0x.."
+    });
+});
 
 
 pragma solidity ^0.4.24;
