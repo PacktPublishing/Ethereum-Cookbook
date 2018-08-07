@@ -50,4 +50,4 @@ web3.eth.sendTransaction({
     console.log(receipt);
 }).on('confirmation', function (confirmationNumber, receipt) {
     console.log(confirmationNumber);
-}).on('error', console.error);ßß
+}).on('error', console.error);
