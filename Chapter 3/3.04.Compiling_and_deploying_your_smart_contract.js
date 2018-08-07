@@ -17,7 +17,7 @@ var solc = require("solc");
 var output = solc.compile(contract, 1);
 
 var contracts = {
-    "library.sol": "library Lib { function f() pure returns (uint) { return 1;m} }",
+    "library.sol": "library Lib { function f() pure returns (uint) { return 1;} }",
     "contract.sol": "import 'library.sol'; contract Test { function g() pure { Lib.f(); } } "
 };
 var output = solc.compile({ sources: contracts }, 1);
