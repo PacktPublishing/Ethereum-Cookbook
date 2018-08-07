@@ -5,6 +5,24 @@
 //     // ...
 // }
 
+function calculate (
+    uint num, // uint type
+    function (uint) pure returns (uint) fun // function type
+    ) { ... }
+    
+function calculate (
+    uint num, 
+    function (uint) pure returns (uint) fun
+    ) internal pure returns (uint r) {
+    r = fun(num);
+}
+
+function square(uint x) 
+    internal pure returns (uint) {
+    return x * x;
+}
+
+
 pragma solidity ^0.4.16;
 
 /**
