@@ -25,7 +25,11 @@ contract TokenContract {
     }
 }
 
+balances[receiver] += amount;
 
+balances[msg.sender] -= amount;
+
+balanceOf[_to] + _value >= balanceOf[_to]
 
 function sendToken(address receiver, uint amount) 
     public returns(bool) {
